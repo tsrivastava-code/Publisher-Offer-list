@@ -14,7 +14,7 @@ st.markdown(
     """
     <div style="text-align: center; margin-bottom: 30px;">
         <h1 style="
-            font-size: 42px;
+            font-size: 52px;
             font-weight: 800;
             background: -webkit-linear-gradient(45deg, #6a11cb, #2575fc);
             -webkit-background-clip: text;
@@ -159,7 +159,7 @@ if df is not None:
 
         # 📑 View Brief at the bottom
         if offer_col:
-            st.markdown("## 📑 View Offer Brief")
+            st.markdown("## View Offer Brief")
             offer_list = df[offer_col].dropna().unique().tolist()
             selected_offer = st.selectbox("Choose an Offer", ["None"] + offer_list)
 
@@ -181,5 +181,5 @@ if df is not None:
     # ----------------------------
     # Table in Main Page
     # ----------------------------
-    st.subheader("📑 Filtered Campaign Data")
+    st.subheader("Filtered Campaign Data")
     st.dataframe(df.style.hide(axis="index"), use_container_width=True)
