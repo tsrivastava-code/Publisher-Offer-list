@@ -110,7 +110,7 @@ if df is not None:
     agency_col = find_col(df, "Agency Access")
     cap_col = find_col(df, "Current Cap")
     offer_col = find_col(df, "Offer")
-    campaign_type_col = "Campaign Type"
+    campaign_type_col = find_col(df, "Campaign Type")
 
     # Placards
     total_offers = len(df)
