@@ -156,7 +156,12 @@ if df is not None:
                 cap_filter = st.selectbox("📊 Select Current Cap", options=["All"] + cap_list)
                 if cap_filter != "All":
                     df = df[df[cap_col] == cap_filter]
-
+            if campaign_type_col:
+                campaign_type_list = df[campaign_type_col].dropna().unique().tolist()
+                campaign_type_filter = st.selectbox("🎯 Select Campaign Type", options=["All"] + campaign_type_list)
+                if campaign_type_filter != "All":
+                    df = df[df[campaign_type_col] == campaign_type_filter]
+                     
         # 📑 View Brief at the bottom
         if offer_col:
             st.markdown("## View Offer Brief")
