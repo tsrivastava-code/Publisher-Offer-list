@@ -131,6 +131,27 @@ if df is not None:
     )
 
     # ----------------------------
+    # ⭐ Top 5 Offers of the Month (Static Table)
+    # ----------------------------
+    st.markdown("## ⭐ Top 5 Offers of the Month")
+
+    top_offers = pd.DataFrame({
+        "Rank": [1, 2, 3, 4, 5],
+        "Offer Name": [
+            "Angel One App Install",
+            "Times Prime Subscription",
+            "Flipkart Sign-up",
+            "Amazon Prime Trial",
+            "Zomato Gold Membership"
+        ],
+        "GEO": ["IN", "IN", "IN", "IN", "IN"],
+        "Payout ($)": [3.5, 5.0, 2.0, 1.5, 4.0],
+        "Cap": ["500/day", "300/day", "1000/day", "2000/day", "400/day"]
+    })
+
+    st.table(top_offers)
+
+    # ----------------------------
     # Sidebar (Search → Filters → Brief)
     # ----------------------------
     with st.sidebar:
@@ -157,12 +178,13 @@ if df is not None:
                 cap_filter = st.selectbox("📊 Select Current Cap", options=["All"] + cap_list)
                 if cap_filter != "All":
                     df = df[df[cap_col] == cap_filter]
+
             if campaign_type_col:
                 campaign_type_list = df[campaign_type_col].dropna().unique().tolist()
                 campaign_type_filter = st.selectbox("🎯 Select Campaign Type", options=["All"] + campaign_type_list)
                 if campaign_type_filter != "All":
                     df = df[df[campaign_type_col] == campaign_type_filter]
-                     
+
         # 📑 View Brief at the bottom
         if offer_col:
             st.markdown("## View Offer Brief")
