@@ -136,7 +136,6 @@ if df is not None:
     st.markdown("## ⭐ Top 5 Offers of the Month")
 
     top_offers = pd.DataFrame({
-        "Rank": [1, 2, 3, 4, 5],
         "Offer Name": [
             "Angel One App Install",
             "Times Prime Subscription",
