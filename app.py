@@ -108,7 +108,6 @@ if df is not None:
 
     geo_col = find_col(df, "Region")
     agency_col = find_col(df, "Agency Access")
-
     cap_col = find_col(df, "Current Cap")
     offer_col = find_col(df, "Offer")
     campaign_type_col = find_col(df, "Campaign Type")
@@ -158,15 +157,16 @@ if df is not None:
                 cap_filter = st.selectbox("📊 Select Current Cap", options=["All"] + cap_list)
                 if cap_filter != "All":
                     df = df[df[cap_col] == cap_filter]
+
             if campaign_type_col:
                 campaign_type_list = df[campaign_type_col].dropna().unique().tolist()
                 campaign_type_filter = st.selectbox("🎯 Select Campaign Type", options=["All"] + campaign_type_list)
                 if campaign_type_filter != "All":
                     df = df[df[campaign_type_col] == campaign_type_filter]
-                     
+
         # 📑 View Brief at the bottom
         if offer_col:
-            st.markdown("## View Offer Brief")
+            st.subheader("View Offer Brief")
             offer_list = df[offer_col].dropna().unique().tolist()
             selected_offer = st.selectbox("Choose an Offer", ["None"] + offer_list)
 
@@ -178,7 +178,7 @@ if df is not None:
                         "Field": row.index,
                         "Value": row.values
                     })
-                    st.markdown(f"### 📄 Offer Brief: **{selected_offer}**")
+                    st.subheader(f"📄 Offer Brief: {selected_offer}")
                     st.dataframe(brief_df, use_container_width=True)
 
     # Apply search filter last
@@ -191,3 +191,23 @@ if df is not None:
     st.subheader("Filtered Campaign Data")
     st.dataframe(df.style.hide(axis="index"), use_container_width=True)
 
+    # ----------------------------
+    # Static Section Example (Top 5 Offers)
+    # ----------------------------
+    st.subheader("⭐ Top 5 Offers of the Month")
+
+    top_offers = pd.DataFrame({
+        "Rank": [1, 2, 3, 4, 5],
+        "Offer Name": [
+            "Angel One App Install",
+            "Times Prime Subscription",
+            "Flipkart Sign-up",
+            "Amazon Prime Trial",
+            "Zomato Gold Membership"
+        ],
+        "GEO": ["IN", "IN", "IN", "IN", "IN"],
+        "Payout ($)": [3.5, 5.0, 2.0, 1.5, 4.0],
+        "Cap": ["500/day", "300/day", "1000/day", "2000/day", "400/day"]
+    })
+
+    st.dataframe(top_offers, use_container_width=True)
