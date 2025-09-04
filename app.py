@@ -107,9 +107,7 @@ if df is not None:
         return None
 
     geo_col = find_col(df, "Region")
-    agency_col = find_col(df, "Agency Access")git add .
-git commit -m "Updated Excel file"
-git push origin main
+    agency_col = find_col(df, "Agency Access")
 
     cap_col = find_col(df, "Current Cap")
     offer_col = find_col(df, "Offer")
