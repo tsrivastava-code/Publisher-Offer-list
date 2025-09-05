@@ -148,31 +148,31 @@ if df is not None:
         with st.expander("Filters", expanded=False):
             if geo_col:
                 geo_list = df[geo_col].dropna().unique().tolist()
-                geo_filter = st.selectbox("🌎 Select Region", options=["All"] + geo_list)
+                geo_filter = st.selectbox("Select Region", options=["All"] + geo_list)
                 if geo_filter != "All":
                     df = df[df[geo_col] == geo_filter]
 
             if agency_col:
                 agency_list = df[agency_col].dropna().unique().tolist()
-                agency_filter = st.selectbox("🏢 Select Agency Access", options=["All"] + agency_list)
+                agency_filter = st.selectbox("Select Agency Access", options=["All"] + agency_list)
                 if agency_filter != "All":
                     df = df[df[agency_col] == agency_filter]
 
             if cap_col:
                 cap_list = df[cap_col].dropna().unique().tolist()
-                cap_filter = st.selectbox("📊 Select Current Cap", options=["All"] + cap_list)
+                cap_filter = st.selectbox("Select Current Cap", options=["All"] + cap_list)
                 if cap_filter != "All":
                     df = df[df[cap_col] == cap_filter]
 
             if campaign_type_col:
                 campaign_type_list = df[campaign_type_col].dropna().unique().tolist()
-                campaign_type_filter = st.selectbox("🎯 Select Campaign Type", options=["All"] + campaign_type_list)
+                campaign_type_filter = st.selectbox("Select Campaign Type", options=["All"] + campaign_type_list)
                 if campaign_type_filter != "All":
                     df = df[df[campaign_type_col] == campaign_type_filter]
                      
         # 📑 View Brief at the bottom
         if offer_col:
-            st.markdown('<h2 class="section-heading">📄 View Offer Brief</h2>', unsafe_allow_html=True)
+            st.markdown('<h2 class="section-heading">View Offer Brief</h2>', unsafe_allow_html=True)
             offer_list = df[offer_col].dropna().unique().tolist()
             selected_offer = st.selectbox("Choose an Offer", ["None"] + offer_list)
 
@@ -193,7 +193,7 @@ if df is not None:
     # ----------------------------
     # Top 5 Offers of the Month (comes first now)
     # ----------------------------
-    st.markdown('<h2 class="section-heading">⭐ Top 5 Offers of the Month</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-heading">Top 5 Offers of the Month</h2>', unsafe_allow_html=True)
 
     top_offers = pd.DataFrame({
         "Rank": [1, 2, 3, 4, 5],
