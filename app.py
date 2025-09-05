@@ -8,42 +8,6 @@ import os
 st.set_page_config(page_title="Affiliate Offers Dashboard", layout="wide")
 
 # ----------------------------
-# Dark / Light Mode Toggle
-# ----------------------------
-if "theme" not in st.session_state:
-    st.session_state.theme = "light"
-
-col1, col2 = st.columns([9, 1])
-with col2:
-    if st.button("🌙" if st.session_state.theme == "light" else "☀️"):
-        st.session_state.theme = "dark" if st.session_state.theme == "light" else "light"
-
-if st.session_state.theme == "dark":
-    st.markdown(
-        """
-        <style>
-        .stApp { background-color: #121212; color: #ffffff; }
-        .stButton>button { background-color: #333333; color: #ffffff; border-radius: 8px; }
-        .stSelectbox, .stTextInput, .stMultiSelect {
-            background-color: #1e1e1e !important; color: #ffffff !important;
-        }
-        </style>
-        """, unsafe_allow_html=True
-    )
-else:
-    st.markdown(
-        """
-        <style>
-        .stApp { background-color: #ffffff; color: #000000; }
-        .stButton>button { background-color: #f0f0f0; color: #000000; border-radius: 8px; }
-        .stSelectbox, .stTextInput, .stMultiSelect {
-            background-color: #ffffff !important; color: #000000 !important;
-        }
-        </style>
-        """, unsafe_allow_html=True
-    )
-
-# ----------------------------
 # Heading
 # ----------------------------
 st.markdown(
@@ -227,7 +191,7 @@ if df is not None:
         df = df[df[offer_col].astype(str).str.contains(search_term, case=False, na=False)]
 
     # ----------------------------
-    # Top 5 Offers of the Month
+    # Top 5 Offers of the Month (comes first now)
     # ----------------------------
     st.markdown('<h2 class="section-heading">Top 5 Offers of the Month</h2>', unsafe_allow_html=True)
 
@@ -248,7 +212,8 @@ if df is not None:
     st.dataframe(top_offers.style.hide(axis="index"), use_container_width=True)
 
     # ----------------------------
-    # Filtered Campaign Data
+    # Filtered Campaign Data (comes after Top 5)
     # ----------------------------
     st.markdown('<h2 class="section-heading">Filtered Campaign Data</h2>', unsafe_allow_html=True)
     st.dataframe(df.style.hide(axis="index"), use_container_width=True)
+
