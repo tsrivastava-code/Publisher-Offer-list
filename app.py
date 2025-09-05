@@ -191,13 +191,7 @@ if df is not None:
         df = df[df[offer_col].astype(str).str.contains(search_term, case=False, na=False)]
 
     # ----------------------------
-    # Filtered Campaign Data
-    # ----------------------------
-    st.markdown('<h2 class="section-heading">📊 Filtered Campaign Data</h2>', unsafe_allow_html=True)
-    st.dataframe(df.style.hide(axis="index"), use_container_width=True)
-
-    # ----------------------------
-    # Top 5 Offers of the Month
+    # Top 5 Offers of the Month (comes first now)
     # ----------------------------
     st.markdown('<h2 class="section-heading">⭐ Top 5 Offers of the Month</h2>', unsafe_allow_html=True)
 
@@ -215,4 +209,10 @@ if df is not None:
         "Cap": ["500/day", "300/day", "1000/day", "2000/day", "400/day"]
     })
 
-    st.dataframe(top_offers, use_container_width=True)
+    st.dataframe(top_offers.style.hide(axis="index"), use_container_width=True)
+
+    # ----------------------------
+    # Filtered Campaign Data (comes after Top 5)
+    # ----------------------------
+    st.markdown('<h2 class="section-heading">📊 Filtered Campaign Data</h2>', unsafe_allow_html=True)
+    st.dataframe(df.style.hide(axis="index"), use_container_width=True)
