@@ -214,5 +214,5 @@ if df is not None:
     # ----------------------------
     # Filtered Campaign Data (comes after Top 5)
     # ----------------------------
-    st.markdown('<h2 class="section-heading">📊 Filtered Campaign Data</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-heading">Filtered Campaign Data</h2>', unsafe_allow_html=True)
     st.dataframe(df.style.hide(axis="index"), use_container_width=True)
