@@ -72,6 +72,12 @@ st.markdown("""
             font-weight: 700;
             margin-top: 6px;
         }
+        h2.section-heading {
+            margin-top: 25px;
+            margin-bottom: 5px;
+            font-size: 24px;
+            font-weight: 600;
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -163,10 +169,10 @@ if df is not None:
                 campaign_type_filter = st.selectbox("🎯 Select Campaign Type", options=["All"] + campaign_type_list)
                 if campaign_type_filter != "All":
                     df = df[df[campaign_type_col] == campaign_type_filter]
-
+                     
         # 📑 View Brief at the bottom
         if offer_col:
-            st.subheader("View Offer Brief")
+            st.markdown('<h2 class="section-heading">📄 View Offer Brief</h2>', unsafe_allow_html=True)
             offer_list = df[offer_col].dropna().unique().tolist()
             selected_offer = st.selectbox("Choose an Offer", ["None"] + offer_list)
 
@@ -178,7 +184,6 @@ if df is not None:
                         "Field": row.index,
                         "Value": row.values
                     })
-                    st.subheader(f"📄 Offer Brief: {selected_offer}")
                     st.dataframe(brief_df, use_container_width=True)
 
     # Apply search filter last
@@ -186,15 +191,15 @@ if df is not None:
         df = df[df[offer_col].astype(str).str.contains(search_term, case=False, na=False)]
 
     # ----------------------------
-    # Table in Main Page
+    # Filtered Campaign Data
     # ----------------------------
-    st.subheader("Filtered Campaign Data")
+    st.markdown('<h2 class="section-heading">📊 Filtered Campaign Data</h2>', unsafe_allow_html=True)
     st.dataframe(df.style.hide(axis="index"), use_container_width=True)
 
     # ----------------------------
-    # Static Section Example (Top 5 Offers)
+    # Top 5 Offers of the Month
     # ----------------------------
-    st.subheader("⭐ Top 5 Offers of the Month")
+    st.markdown('<h2 class="section-heading">⭐ Top 5 Offers of the Month</h2>', unsafe_allow_html=True)
 
     top_offers = pd.DataFrame({
         "Rank": [1, 2, 3, 4, 5],
