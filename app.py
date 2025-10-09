@@ -122,7 +122,7 @@ if df is not None:
     total_offers = len(df)
     active_offers = len(df[df[cap_col].astype(str).str.lower() == "yes"]) if cap_col else 0
     geos_total = 75   # Hardcoded
-    current_month = "September 2025"
+    current_month = "October 2025"
 
     st.markdown(
         f"""
